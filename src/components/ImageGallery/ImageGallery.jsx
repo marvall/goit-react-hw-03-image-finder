@@ -1,4 +1,5 @@
 import ImageGalleryItem from "./ImageGalleryItem";
+import propTypes from "prop-types";
 
 function ImageGallery(props) {
   return (
@@ -13,4 +14,7 @@ function ImageGallery(props) {
     </ul>
   );
 }
+ImageGallery.propTypes = {
+  gallery: propTypes.array,
+};
 export default ImageGallery;

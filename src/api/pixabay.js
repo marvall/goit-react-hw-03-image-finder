@@ -3,7 +3,7 @@ import axios from "axios";
 const USER_KEY = "19268663-7f88b2c67b4246c5b4cd88041";
 /**
  *
- * @param {strin} query - keyword for to find images
+ * @param {string} query - keyword for to find images
  * @param {number} pageNumber - the number page on pixabay
  */
 export const getImage = (query, pageNumber) => {

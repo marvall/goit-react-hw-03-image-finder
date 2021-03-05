@@ -12,9 +12,17 @@ function App() {
   const [currentPage, setCurrentPage] = useState(1);
   const [isLoading, setLoading] = useState(false);
 
+  /**
+   *
+   * @param {String} query - keyword for to find images
+   */
   const handleGetQuery = (query) => {
     setQuery(query);
   };
+
+  /**
+   * Function increment currentPage on 1
+   */
   const hanbleGetMore = () => {
     setCurrentPage((prevState) => prevState + 1);
   };
@@ -26,17 +34,41 @@ function App() {
       .finally(() => {
         setLoading(false);
       });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    setLoading(true);
-    getImage(findQuery, currentPage)
-      .then(({ hits }) => setGallery((prevState) => [...prevState, ...hits]))
-      .catch((error) => alert(error))
-      .finally(() => {
-        setLoading(false);
-      });
-  }, [currentPage, findQuery]);
+  useEffect(
+    (prevState) => {
+      if (prevState !== currentPage) {
+        setLoading(true);
+        getImage(findQuery, currentPage)
+          .then(({ hits }) =>
+            setGallery((prevState) => [...prevState, ...hits])
+          )
+          .catch((error) => alert(error))
+          .finally(() => {
+            setLoading(false);
+          });
+      }
+    },
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [currentPage]
+  );
+
+  useEffect(
+    (prevState) => {
+      if (prevState !== findQuery) {
+        setLoading(true);
+        getImage(findQuery, 1)
+          .then(({ hits }) => setGallery(hits))
+          .catch((error) => alert(error))
+          .finally(() => {
+            setLoading(false);
+          });
+      }
+    },
+    [findQuery]
+  );
 
   return (
     <>

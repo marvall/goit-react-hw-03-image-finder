@@ -1,3 +1,5 @@
+import propTypes from "prop-types";
+
 function ImageGalleryItem(props) {
   return (
     <li className="ImageGalleryItem">
@@ -9,5 +11,8 @@ function ImageGalleryItem(props) {
     </li>
   );
 }
-
+ImageGalleryItem.propTypes = {
+  url: propTypes.string,
+  description: propTypes.string,
+};
 export default ImageGalleryItem;

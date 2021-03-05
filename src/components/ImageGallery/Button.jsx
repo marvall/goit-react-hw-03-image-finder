@@ -7,4 +7,7 @@ function Button(props) {
     </button>
   );
 }
+Button.propTypes = {
+  onClick: propTypes.func.isRequired,
+};
 export default Button;
