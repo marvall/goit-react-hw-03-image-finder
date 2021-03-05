@@ -3,7 +3,13 @@ import ImageGalleryItem from "./ImageGalleryItem";
 function ImageGallery(props) {
   return (
     <ul className="ImageGallery">
-      <ImageGalleryItem />
+      {props.gallery.map((image) => (
+        <ImageGalleryItem
+          key={image.id}
+          url={image.largeImageURL}
+          description={image.tags}
+        />
+      ))}
     </ul>
   );
 }
