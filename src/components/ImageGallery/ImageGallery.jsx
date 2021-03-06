@@ -7,8 +7,10 @@ function ImageGallery(props) {
       {props.gallery.map((image) => (
         <ImageGalleryItem
           key={image.id}
-          url={image.largeImageURL}
+          url={image.webformatURL}
+          largeUrl={image.largeImageURL}
           description={image.tags}
+          setImageOnClick={props.onClickGalleryItem}
         />
       ))}
     </ul>
@@ -16,5 +18,6 @@ function ImageGallery(props) {
 }
 ImageGallery.propTypes = {
   gallery: propTypes.array,
+  onClickGalleryItem: propTypes.func.isRequired,
 };
 export default ImageGallery;
